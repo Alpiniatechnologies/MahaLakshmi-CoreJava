@@ -1,0 +1,29 @@
+<html xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:th="http://www.thymeleaf.org" 
+    xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+    
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<title>Login</title> 
+</head>
+<body>
+<form action="/login" method="POST">
+
+<h1>Welcome to ALPINIA TOURS AND TRAVELS</h1>
+<table>
+<tr>
+<td>UserName:</td>
+<td><input type="text" id="username" name="username"/></td>
+</tr>
+<tr>
+<td>Password:</td>
+<td><input type="password" id="password" name="password"/></td>
+</tr>
+</table>
+<input type="submit" id="submitLogin" name="submitLogin" value="LOGIN"/>
+</form>
+<a href ="/signIn">Click here to SignIN</a>
+</body>
+</html>
