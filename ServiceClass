@@ -1,0 +1,36 @@
+package com.org.toursandtravels.Service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.org.toursandtravels.Repository.RepositoryClass;
+
+@Service
+public class ServiceClass {
+
+	@Autowired
+	RepositoryClass repository;
+	
+	public String validateUserDetails(String username,String password) {
+		String status=null;
+//we need to db call and check the user is valid or not
+	if(username.equalsIgnoreCase("admin")&& password.equalsIgnoreCase("admin")) {
+		
+		status="validuser";
+	}else {
+		status="notvaliduser";
+	}
+	return status;
+}
+	
+	
+	public void saveRegisterDetails(String firstname, String middlename,String lastname,String username,String pword,String email,String mobile)
+	{
+	repository.saveRegisterDetails(firstname, middlename, lastname, username, pword, email, mobile);
+}
+	
+	public void saveAdminDetails(String busname, String source,String destination,String price,String timings,String seatno)
+	{
+		repository.saveAdminDetails(busname, source, destination, price, timings, seatno);
+	}
+}
