@@ -1,0 +1,67 @@
+package com.org.toursandtravels.Controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import com.org.toursandtravels.Service.ServiceClass;
+
+@Controller
+public class ControllerClass {
+	
+	@Autowired
+	ServiceClass service;
+@RequestMapping("/")
+public String sample()
+{
+	return "login";
+}
+
+@RequestMapping(value="/login", method=RequestMethod.POST)
+public String login(@RequestParam("username") String username, @RequestParam("password")String password)
+
+{
+	System.out.println("username:"+username);
+	System.out.println("password:"+password);
+	
+	String status=service.validateUserDetails(username, password);
+	System.out.println("status="+status);
+	if(status.equalsIgnoreCase("validuser")) {
+		return "adminlogin";
+	}else {
+		return "login";
+	}
+	
+}
+
+@RequestMapping("/signIn")
+public String showRegisterpage() {
+	return "register";
+}
+
+
+@RequestMapping(value="/register",method=RequestMethod.POST)
+public String register(@RequestParam("fname") String firstname,@RequestParam("mname") String middlename,@RequestParam("lname") String lastname,@RequestParam("uname")String username,@RequestParam("password")String password,@RequestParam("email")String email,@RequestParam("mobile")String mobile)
+
+{
+	System.out.println("firstname:"+firstname);
+	System.out.println("middlename:"+middlename);
+	System.out.println("lastname:"+lastname);
+	System.out.println("username:"+username);
+	System.out.println("password:"+password);
+	System.out.println("email:"+email);
+	System.out.println("mobile:"+mobile);
+	service.saveRegisterDetails(firstname, middlename, lastname, username, password, email, mobile);
+	
+	return "register";
+}	
+	@RequestMapping(value="/admin",method=RequestMethod.POST)
+	public String admin(@RequestParam("busname")String busname,@RequestParam("source")String source,@RequestParam("destination")String destination,@RequestParam("price")String price,@RequestParam("timings")String timings,@RequestParam("seatno")String seatno)
+	{
+		service.saveAdminDetails(busname, source, destination, price, timings, seatno);
+		return "login";
+	}
+}
+
